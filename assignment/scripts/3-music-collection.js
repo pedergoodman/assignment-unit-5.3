@@ -47,13 +47,13 @@ addToCollection('Soft Sounds From Another Planet', 'Japanese Breakfast', 2017);
 
 console.log('collection is:', collection);
 console.log(showCollection(collection));
-// -> should return array with 6 objects
+// should return array with 6 objects
 
 
 console.log('Searching by Artist');
 console.log('Searching for Artist Dan Deacon', findByArtist('Dan Deacon'));
-// -> should return 1 obj
+// should return an array with 1 objs
 console.log('Searching for Artist Bad Bad Meow', findByArtist('Bad Bad Meow'));
-// -> should return 2 obj
+// should return an array with 2 objs
 console.log('Searching for Artist Andrew Bird', findByArtist('Andrew Bird'));
-// -> should return empty array
+// should return empty array

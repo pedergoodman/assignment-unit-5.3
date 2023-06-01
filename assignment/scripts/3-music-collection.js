@@ -30,7 +30,19 @@ function findByArtist(artist) {
     return result;
 }
 
-
+function search(artist, year) {
+    let result = [];
+    for (const i in collection) {
+        if (collection[i].artist === artist && collection[i].yearPublished === year) {
+            result.push(collection[i])
+        }
+    }
+    if (result.length > 0) {
+        return result;
+    } else {
+        return collection;
+    }
+}
 
 
 

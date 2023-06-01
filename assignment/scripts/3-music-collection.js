@@ -11,8 +11,12 @@ function addToCollection(title, artist, yearPublished) {
     collection.push(obj)
 }
 
-
-
+function showCollection(array) {
+    console.log('This Collection has', array.length, 'albums.' );
+    for (const i in array) {
+        console.log(array[i].title + ' by ' + array[i].artist + ', published in ' + array[i].yearPublished);
+    }
+}
 
 
 
@@ -24,3 +28,4 @@ addToCollection('Lollygagger', 'Lollygagger', 2019);
 addToCollection('Soft Sounds From Another Planet', 'Japanese Breakfast', 2017);
 
 console.log('collection is:', collection);
+console.log(showCollection(collection));

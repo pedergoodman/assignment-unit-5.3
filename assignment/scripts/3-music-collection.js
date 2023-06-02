@@ -54,16 +54,55 @@ function addTracks(trackName, trackDuration) {
 
 // TESTS
 
+// Adding Tracks
+
+// Defining tracks first before plugging into addToCollection()
+// first 3 use an array to add
+let glissRifferTracks = [
+    {trackName:'Mind On Fire', trackDuration: '3:51'}, 
+    {trackName:'When I Was Done Dying', trackDuration: '4:18'},
+    {trackName:'Learning to Relax', trackDuration: '6:44'},
+    {trackName: 'Feel the Lightning', trackDuration:'4:53' }
+]
+
+let fakeMewsTracks = [
+    {trackName:'The Most Beautiful Piece of Chocolate Cake', trackDuration: '3:49'}, 
+    {trackName:'SCIENTISTS AND LAWMAKERS AGREE TO DISAGREE', trackDuration: '4:10'},
+    {trackName: "THE WORLD'S SOFTEST HANDS", trackDuration: '2:53'},
+    {trackName:'IS TRASH THE NEW SUPERFOOD?', trackDuration: '3:23'}
+]
+
+let halfBadTracks = [
+    {trackName:'The Most Beautiful Piece of Chocolate Cake ', trackDuration: '3:49'}, 
+    {trackName:'SCIENTISTS AND LAWMAKERS AGREE TO DISAGREE', trackDuration: '4:10'},
+    {trackName:'SCIENTISTS AND LAWMAKERS AGREE TO DISAGREE', trackDuration: '4:10'},
+]
+
+// Test using a function to add tracks to an array before plugging into addToCollection()
+let lollygaggerTracks = [];
+lollygaggerTracks.push(addTracks('Microcosm', '3:42'));
+lollygaggerTracks.push(addTracks('Captain Chuckles VS. The Multiverse', '3:14'));
+lollygaggerTracks.push(addTracks('Stone', '3:50'));
+
+let thisIsHappeningTracks = [];
+thisIsHappeningTracks.push(addTracks('Dance Yrself Clean','8:56'));
+thisIsHappeningTracks.push(addTracks('One Touch','7:46'));
+thisIsHappeningTracks.push(addTracks('I Can Change','5:56'));
+
+let softSoundsTracks = [];
+softSoundsTracks.push(addTracks('Soft Sounds From Another Planet','3:21'));
+softSoundsTracks.push(addTracks('Planetary Ambience','1:17'));
+softSoundsTracks.push(addTracks('The Body Is a Blade','3:41'));
 
 
 
 // should add each album to array
-addToCollection('Gliss Riffer', 'Dan Deacon', 2015);
-addToCollection("Fake Mews!", "Bad Bad Meow", 2017);
-addToCollection('Half the Bad & Twice the Good', 'Bad Bad Meow', 2015);
-addToCollection('This is Happening', 'LCD Soundsystem', 2010);
-addToCollection('Lollygagger', 'Lollygagger', 2019);
-addToCollection('Soft Sounds From Another Planet', 'Japanese Breakfast', 2017);
+addToCollection('Gliss Riffer', 'Dan Deacon', 2015, glissRifferTracks);
+addToCollection("Fake Mews!", "Bad Bad Meow", 2017, fakeMewsTracks);
+addToCollection('Half the Bad & Twice the Good', 'Bad Bad Meow', 2015, halfBadTracks);
+addToCollection('This is Happening', 'LCD Soundsystem', 2010, thisIsHappeningTracks);
+addToCollection('Lollygagger', 'Lollygagger', 2019, lollygaggerTracks);
+addToCollection('Soft Sounds From Another Planet', 'Japanese Breakfast', 2017, softSoundsTracks);
 
 
 console.log('collection is:', collection);
@@ -71,7 +110,7 @@ console.log('collection is:', collection);
 console.log(showCollection(collection));
 
 
-console.log('Searching by Artist');
+console.log('\tSearching by Artist');
 // should return an array with 1 objs
 console.log('Searching for Artist Dan Deacon', findByArtist('Dan Deacon'));
 

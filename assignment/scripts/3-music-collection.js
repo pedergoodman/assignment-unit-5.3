@@ -57,7 +57,7 @@ function search(artist, year, trackName) {
                 if (trackName === collection[album].tracks[track].trackName){ // don't forget the fucking triple equal
                     let trackName = collection[album].tracks[track].trackName
                     let albumName = collection[album].title
-                    let result = 'Found ' + trackName + ' i n' + albumName + ' album.';
+                    let result = 'Found ' + trackName + ' in ' + albumName + ' album.';
                     return result; 
                     // console.log('Found', trackName, 'in', albumName, 'album.');
                 }
@@ -173,9 +173,11 @@ console.log("Empty Search", search()); // should return empty array
 
 console.log('\tTesting search Function, trackName');
 
-console.log(search("one", 'two', 'Mind On Fire')); // random text in par1 & 2. should return Mind On Fire
-console.log(search(0,0,'Tell Me That You Lie')); // 0,0 in par1 & 2. should return Tell Me That You Lie
+console.log(search("one", 'two', 'Mind On Fire')); // random artist and year. should return Mind On Fire
+console.log(search(0,0,'Tell Me That You Lie')); // 0,0 in artist and year. should return Tell Me That You Lie
 
-console.log(search('Lollygagger',2019,'Microcosm')); // accurate album and year
-console.log(search('Lollygagger',2019,));
-console.log(search('Bad Bad Meow',2017));
+console.log(search('Lollygagger',2019,'Microcosm')); // accurate artist and year, should return Microcosm
+console.log(search('Lollygagger',2019,)); // accurate artist and year, should return array
+
+console.log(search('Bad Bad Meow',2017)); // accurate artist and year, should return array
+console.log(search('Bad Bad Meow',2017, 'Tell The Truth')); // accurate artist and year, but track not in same album, should return Tell The Truth

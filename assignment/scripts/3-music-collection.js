@@ -46,6 +46,15 @@ function search(artist, year) {
     }
 }
 
+function addTracks(trackName, trackDuration) {
+    let result = {trackName: trackName, trackDuration: trackDuration};
+    return result;
+}
+
+
+// TESTS
+
+
 
 
 // should add each album to array

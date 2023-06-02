@@ -35,17 +35,25 @@ function findByArtist(artist) {
 } // end findByArtist
 
 
-function search(artist, year) {
+function search(artist, year, trackName) {
     let result = [];
+    
+    // if (trackName == true) {
+        
+    // }
     for (const i in collection) {
         if (collection[i].artist === artist && collection[i].yearPublished === year) {
             result.push(collection[i]);
         }
     }
-    if (result.length > 0) {
+    if (artist && year && result.length > 0) {
         return result;
-    } else {
+    } 
+    else if (artist && year && result.length === 0) {
         return collection;
+    } 
+    else {
+        return result;
     }
 } // end search
 
@@ -124,13 +132,14 @@ console.log('\tSearching by Artist');
 // Searching for Artist
 console.log('Searching for Artist Dan Deacon', findByArtist('Dan Deacon')); // should return an array with 1 objs
 console.log('Searching for Artist Bad Bad Meow', findByArtist('Bad Bad Meow')); // should return an array with 2 objs
-console.log('Searching for Artist Andrew Bird', findByArtist('Andrew Bird')); // should return empty array
-
+console.log('Searching for Artist not in array Andrew Bird', findByArtist('Andrew Bird')); // should return empty array
+console.log('Empty Search', findByArtist()); // should return empty array
 
 console.log('\tTesting Search Function');
 
 // Searching for band name and album year
 console.log("Searching for Bad Bad Meow, 2017", search('Bad Bad Meow',2017)); // should return with one item in array
 console.log("Searching for Bad Bad Meow, 2015", search('Bad Bad Meow',2015)); // should return with one item in array
-console.log("Searching for Bad Bad Meow, 2012", search('Bad Bad Meow',2012)); // should return entire collection
+console.log("Searching for (not in array) Bad Bad Meow, 2012", search('Bad Bad Meow',2012)); // should return entire collection
 console.log("Searching for Dan Deacon, 2015", search('Dan Deacon',2015)); // should return with one item in array
+console.log("Empty Search", search()); // should return empty array

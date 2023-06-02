@@ -18,8 +18,18 @@ function addToCollection(title, artist, yearPublished, tracks) {
 // Displays collection length, then lists all the albums within the collection
 function showCollection(array) {
     console.log('This Collection has', array.length, 'albums.' ); 
-    for (const i in array) { // for every album in the array
-        console.log(array[i].title + ' by ' + array[i].artist + ', published in ' + array[i].yearPublished);
+    for (const album in array) { // for every album in the array
+        console.log(array[album].title + ' by ' + array[album].artist + ', published in ' + array[album].yearPublished); // logs album info
+        
+        let trackNumber = 1; // resets track number 
+
+        for (const track in collection[album].tracks) { 
+            let trackName = collection[album].tracks[track].trackName;
+            let trackDuration = collection[album].tracks[track].trackDuration;
+            console.log("\t" + trackNumber + ". " + trackName + ": " + trackDuration); // logs out track info within a given album
+            trackNumber++;
+        }
+
     }
 } // end showCollection
 
@@ -38,22 +48,25 @@ function findByArtist(artist) {
 function search(artist, year, trackName) {
     let result = [];
     
-    // if (trackName == true) {
-        
-    // }
-    for (const i in collection) {
-        if (collection[i].artist === artist && collection[i].yearPublished === year) {
-            result.push(collection[i]);
+    if (trackName) {
+        for (const i in collection){
+            if (collection[i].tracks[trackName] === trackName) {
+
+            }
+
         }
-    }
-    if (artist && year && result.length > 0) {
-        return result;
-    } 
-    else if (artist && year && result.length === 0) {
-        return collection;
     } 
     else {
-        return result;
+        for (const i in collection) {
+            if (collection[i].artist === artist && collection[i].yearPublished === year) { // searches for exactly artist && year criteria
+                result.push(collection[i]);
+            }
+        }
+        if (artist && year) {
+            return result;
+        } else {
+            return collection;
+        }
     }
 } // end search
 
@@ -138,8 +151,8 @@ console.log('Empty Search', findByArtist()); // should return empty array
 console.log('\tTesting Search Function');
 
 // Searching for band name and album year
-console.log("Searching for Bad Bad Meow, 2017", search('Bad Bad Meow',2017)); // should return with one item in array
-console.log("Searching for Bad Bad Meow, 2015", search('Bad Bad Meow',2015)); // should return with one item in array
-console.log("Searching for (not in array) Bad Bad Meow, 2012", search('Bad Bad Meow',2012)); // should return entire collection
-console.log("Searching for Dan Deacon, 2015", search('Dan Deacon',2015)); // should return with one item in array
+console.log("Searching for 'Bad Bad Meow, 2017'", search('Bad Bad Meow',2017)); // should return with one item in array
+console.log("Searching for 'Bad Bad Meow, 2015'", search('Bad Bad Meow',2015)); // should return with one item in array
+console.log("Searched, but not in array: 'Bad Bad Meow, 2012'", search('Bad Bad Meow',2012)); // should return entire collection
+console.log("Searching for 'Dan Deacon, 2015'", search('Dan Deacon',2015)); // should return with one item in array
 console.log("Empty Search", search()); // should return empty array

@@ -2,13 +2,14 @@ console.log('***** Music Collection *****')
 
 let collection = [];
 
-function addToCollection(title, artist, yearPublished) {
+function addToCollection(title, artist, yearPublished, tracks) {
     let obj = {
         title: title,
         artist: artist,
-        yearPublished: yearPublished
+        yearPublished: yearPublished,
+        tracks: tracks
     }
-    collection.push(obj)
+    collection.push(obj);
 }
 
 
@@ -24,17 +25,18 @@ function findByArtist(artist) {
     let result = [];
     for (const i in collection) {
         if (collection[i].artist === artist) { // if artist argument === artist property value
-            result.push(collection[i])
+            result.push(collection[i]);
         }    
     }
     return result;
 }
 
+
 function search(artist, year) {
     let result = [];
     for (const i in collection) {
         if (collection[i].artist === artist && collection[i].yearPublished === year) {
-            result.push(collection[i])
+            result.push(collection[i]);
         }
     }
     if (result.length > 0) {
@@ -45,8 +47,6 @@ function search(artist, year) {
 }
 
 
-
-// TESTS
 
 // should add each album to array
 addToCollection('Gliss Riffer', 'Dan Deacon', 2015);

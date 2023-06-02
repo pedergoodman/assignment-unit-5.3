@@ -47,16 +47,26 @@ function findByArtist(artist) {
 
 function search(artist, year, trackName) {
     let result = [];
-    
+
     if (trackName) {
-        for (const i in collection){
-            if (collection[i].tracks[trackName] === trackName) {
 
-            }
+        for (const album in collection){
+            
+            for (track in collection[album].tracks) {
 
+                if (trackName === collection[album].tracks[track].trackName){ // don't forget the fucking triple equal
+                    let trackName = collection[album].tracks[track].trackName
+                    let albumName = collection[album].title
+                    let result = 'Found ' + trackName + ' i n' + albumName + ' album.';
+                    return result; 
+                    // console.log('Found', trackName, 'in', albumName, 'album.');
+                }
+        
+            } 
+            
         }
-    } 
-    else {
+        
+    } else {
         for (const i in collection) {
             if (collection[i].artist === artist && collection[i].yearPublished === year) { // searches for exactly artist && year criteria
                 result.push(collection[i]);
@@ -98,9 +108,9 @@ let fakeMewsTracks = [
 ]
 
 let halfBadTracks = [
-    {trackName:'The Most Beautiful Piece of Chocolate Cake ', trackDuration: '3:49'}, 
-    {trackName:'SCIENTISTS AND LAWMAKERS AGREE TO DISAGREE', trackDuration: '4:10'},
-    {trackName:'SCIENTISTS AND LAWMAKERS AGREE TO DISAGREE', trackDuration: '4:10'},
+    {trackName:'Tell Me That You Lie', trackDuration: '2:42'}, 
+    {trackName:'Tell The Truth', trackDuration: '3:20'},
+    {trackName:"I Don't Belong", trackDuration: '3:54'},
 ]
 
 // Tests using a function to add tracks to an array before plugging into addToCollection()
@@ -140,19 +150,32 @@ showCollection(collection); // should return length of 6 and list all the albums
 
 // SEARCHING
 
+// Searching for Artist
 console.log('\tSearching by Artist'); 
 
-// Searching for Artist
 console.log('Searching for Artist Dan Deacon', findByArtist('Dan Deacon')); // should return an array with 1 objs
 console.log('Searching for Artist Bad Bad Meow', findByArtist('Bad Bad Meow')); // should return an array with 2 objs
 console.log('Searching for Artist not in array Andrew Bird', findByArtist('Andrew Bird')); // should return empty array
 console.log('Empty Search', findByArtist()); // should return empty array
 
-console.log('\tTesting Search Function');
 
 // Searching for band name and album year
+console.log('\tTesting search Function, artist and year');
+
 console.log("Searching for 'Bad Bad Meow, 2017'", search('Bad Bad Meow',2017)); // should return with one item in array
 console.log("Searching for 'Bad Bad Meow, 2015'", search('Bad Bad Meow',2015)); // should return with one item in array
 console.log("Searched, but not in array: 'Bad Bad Meow, 2012'", search('Bad Bad Meow',2012)); // should return entire collection
 console.log("Searching for 'Dan Deacon, 2015'", search('Dan Deacon',2015)); // should return with one item in array
 console.log("Empty Search", search()); // should return empty array
+
+// Searching for trackname specifically, 
+// can i leave the first 2 perameters blank ?? 
+
+console.log('\tTesting search Function, trackName');
+
+console.log(search("one", 'two', 'Mind On Fire')); // random text in par1 & 2. should return Mind On Fire
+console.log(search(0,0,'Tell Me That You Lie')); // 0,0 in par1 & 2. should return Tell Me That You Lie
+
+console.log(search('Lollygagger',2019,'Microcosm')); // accurate album and year
+console.log(search('Lollygagger',2019,));
+console.log(search('Bad Bad Meow',2017));
